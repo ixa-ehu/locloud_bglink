@@ -64,6 +64,8 @@ LoCloud project at this address:
 
     http://support.locloud.eu/Metadata%20enrichment%20API%20technical%20documentation
 
+## Contact information
+
 ````shell
 Arantxa Otegi
 IXA NLP Group
