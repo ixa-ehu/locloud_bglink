@@ -3,10 +3,12 @@ locloud_bglink
 
 Background link service for LoCloud
 
-This repository contains the background link service module developed within
-the LoCloud project. The module consists of a PHP script that implements a
-REST service, calls Dbpedia Spotlight for the actual processing, and wraps
-the answer into a suitable format.
+This repository contains the background link service module developed
+within the LoCloud project. The module consists of a PHP script that
+implements a REST service, calls [DBpedia
+Spotlight](https://github.com/dbpedia-spotlight/dbpedia-spotlight/wiki)
+for the actual processing, and wraps the answer into a suitable
+format.
 
 The background link service uses DBpedia Spotlight as a backbone for
 performing the linking. In principle, the service can be used in any
@@ -18,13 +20,27 @@ Installation instructions
 
 ### 1. Install DBpedia Spotlight for the required language.
 
+Download the statistical backend of DBpedia Spotlight:
+
+    wget http://spotlight.sztaki.hu/downloads/dbpedia-spotlight-0.7.jar
+
+Download the English or Spanish language model:
+
+    wget http://spotlight.sztaki.hu/downloads/en_2+2.tar.gz  (English model)
+    wget http://spotlight.sztaki.hu/downloads/es.tar.gz   (Spanish model)
+
+Untar the language model:
+
+    tar xzvf en_2+2.tar.gz
+    tar xzvf es.tar.gz
+
 ### 2. Make sure that the DBpedia instance is running.  
 
 One way to achieve this is to copy the following into this location:
 
     /etc/rc.local
 
-Please configure the proper setting (path_to_dbpedia, language, port)
+Please configure the proper setting for path_to_dbpedia, language (en_2+2 or es) and port
 
 ````shell
 #!/bin/sh
@@ -33,11 +49,11 @@ Please configure the proper setting (path_to_dbpedia, language, port)
 touch /var/lock/subsys/local
 
 path_to_dbpedia_jar=/home/lcuser/bglink
-language=en
+language=en_2+2
 port=2222
 
 echo "STARTING BGLINK SERVICE"
-su - lcuser -c '/usr/bin/java -jar -Xmx4g ${path_to_dbpedia_jar}/dbpedia-spotlight.jar ${path_to_dbpedia_jar}/${language} http://localhost:${port}/rest &> /dev/null &'
+su - lcuser -c '/usr/bin/java -jar -Xmx4g ${path_to_dbpedia_jar}/dbpedia-spotlight-0.7.jar ${path_to_dbpedia_jar}/${language} http://localhost:${port}/rest &> /dev/null &'
 sleep 180
 
 ````
