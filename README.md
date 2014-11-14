@@ -63,3 +63,11 @@ The API of the service is available through the support centre of the
 LoCloud project at this address:
 
     http://support.locloud.eu/Metadata%20enrichment%20API%20technical%20documentation
+
+````shell
+Arantxa Otegi
+IXA NLP Group
+University of the Basque Country (UPV/EHU)
+E-20018 Donostia-San Sebastián
+arantza.otegi@ehu.es
+````
